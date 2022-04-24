@@ -1,8 +1,14 @@
 const express = require('express')
 const app = express()
-const dotenv = require('dotenv')
-dotenv.config()
+ require('dotenv').config()
+const userRoute = require('./routes/userRoute')
+const mongoDbConnection = require('./connections/dbConnection')
 const port = process.env.PORT || 6000
+mongoDbConnection()
+
+/*  */
+app.use('/api/user',userRoute )
+
 
 
 app.get('/',(req , res)=>{
