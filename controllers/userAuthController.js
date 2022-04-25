@@ -1,6 +1,7 @@
 const User = require("../model/userAuthSchema");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const Todo = require("../model/todoSchema")
 /* 
     all user routes controllers 
 */
@@ -73,3 +74,18 @@ exports.loginUser = async (req, res) => {
     res.status(404).json({ err: "authentication fail ! " });
   }
 };
+
+
+
+/*  todo add */
+
+exports.createTodo = async(req , res)=>{
+  try{
+    const newTodo =  await Todo(req.body)
+    const updatedTodo = await newTodo.save()
+    console.log(updatedTodo);
+    res.status(200).json(updatedTodo)
+  }catch(err){
+    res.status(500).json({err : message})
+  }
+}

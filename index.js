@@ -6,7 +6,7 @@ const mongoDbConnection = require("./connections/dbConnection");
 const bodyParser = require('body-parser')
 const checkLogin   = require('./middlewares/loginChecking')
 /* port */
-const port = process.env.PORT || 6000;
+const port = process.env.PORT || 5000;
 
 /* mongoDB connection */
 mongoDbConnection();
