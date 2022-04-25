@@ -1,11 +1,10 @@
 const express = require('express')
 const userRoute = express.Router()
+const {signupUser , loginUser , find} = require('../controllers/userAuthController')
 
-
-
-userRoute.get('/signup',(req , res)=>{
-    res.status(200).json('this is signup routes')
-})
+userRoute.get('/',find)
+userRoute.post('/signup', signupUser )
+userRoute.post('/login', loginUser)
 
 
 module.exports = userRoute
