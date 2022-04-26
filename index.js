@@ -19,6 +19,9 @@ app.use("/api/user", userRoute);
 app.get("/",  (req, res) => {
   res.status(200).json("hello this iss starting server test route");
 });
+app.get("/user/i/b",  (req, res) => {
+  res.status(200).json("test me route");
+});
 
 /* start server */
 app.listen(port, () => {
