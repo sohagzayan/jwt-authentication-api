@@ -16,7 +16,7 @@ app.use(bodyParser.json())
 app.use("/api/user", userRoute);
 
 /* main routes */
-app.get("/", checkLogin, (req, res) => {
+app.get("/",  (req, res) => {
   res.status(200).json("hello this iss starting server test route");
 });
 
