@@ -81,11 +81,40 @@ exports.loginUser = async (req, res) => {
 
 exports.createTodo = async(req , res)=>{
   try{
-    const newTodo =  await Todo(req.body)
+    const newTodo =  await Todo({
+      ...req.body ,
+      user : req.userId
+    })
     const updatedTodo = await newTodo.save()
-    console.log(updatedTodo);
+    await User.updateOne({
+      _id : req.userId
+    },{
+      $push : {
+        todos : updatedTodo._id
+      }
+    })
     res.status(200).json(updatedTodo)
   }catch(err){
     res.status(500).json({err : message})
   }
+}
+
+exports.getTodo = async(req , res)=>{
+  try{
+    const todo = await Todo.find().populate("user", "username -_id")
+    res.status(200).json(todo)
+  }catch(err){
+    res.status(500).json({err : message})
+  }
+}
+
+exports.getAllUser = async (req , res)=>{
+
+  try{
+    const user = await User.find().populate("todos")
+    res.status(200).json(user)
+  }catch(err){
+    res.status(500).json({err : err.message})
+  }
+
 }

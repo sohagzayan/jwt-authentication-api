@@ -22,6 +22,12 @@ const userAuthSchema = mongoose.Schema({
        type : Date,
       default : Date.now
    } ,
+   todos : [
+        {
+            type : mongoose.Types.ObjectId,
+            ref : "Todo"
+        }
+   ]
 })
 
 const User = mongoose.model("User" ,userAuthSchema)
